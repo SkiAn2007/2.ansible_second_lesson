@@ -1,0 +1,12 @@
+---
+- name: get facts playbook
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - 01b_secret_encrypted.yaml
+  tasks:
+    - name: get facts task
+      debug:
+        msg: "{{ password }}"
+      no_log: true

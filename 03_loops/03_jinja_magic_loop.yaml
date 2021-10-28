@@ -1,0 +1,12 @@
+---
+- name: Jinja magic in loop
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Cartesian product example
+      debug:
+        msg: "{{ cartesian[0] + cartesian[1] }}"
+      loop: "{{ ['abc', 'def'] | product(['123', '456', '789']) | list }}"
+      loop_control:
+        loop_var: cartesian

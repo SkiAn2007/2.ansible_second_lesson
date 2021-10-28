@@ -1,0 +1,21 @@
+---
+- name: common filters
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    my_value: 5
+    my_value2: Null
+    my_default: 10
+  tasks:
+    - name: mandatory filter
+      debug:
+        msg: "{{ my_value | mandatory }}"
+
+    - name: default filter
+      debug:
+        msg: "{{ my_value2 | default(my_default) }}"
+
+    - name: default filter with null override
+      debug:
+        msg: "{{ my_value2 | default(my_default, True) }}"

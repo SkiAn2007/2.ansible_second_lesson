@@ -1,0 +1,23 @@
+---
+- name: failed_when play
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: run non-existing program
+    command: /opt/myprogramm
+    register: result
+    ignore_errors: true
+
+  - name: show registered variable
+    debug:
+      msg: "{{ result }}"
+
+  - name: stop task if program failed
+    debug:
+      msg: "Stop running if myprogramm failed"
+    failed_when: result is failed
+
+  - name: unreachable task
+    debug:
+      msg: "this message never shows up"

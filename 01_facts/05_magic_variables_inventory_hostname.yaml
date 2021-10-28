@@ -1,0 +1,11 @@
+- name: get facts playbook
+  hosts: nodes
+  gather_facts: true
+  tasks:
+  - name: list all nodes participating in play
+    debug:
+      msg: "{{ inventory_hostname }}"
+
+  - name: get facts by hostvars
+    debug:
+      msg: "{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}"

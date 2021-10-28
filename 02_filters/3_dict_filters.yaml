@@ -1,0 +1,30 @@
+---
+- name: dict filters
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    characters_dict:
+      Douglas: Human
+      Marvin: Robot
+      Arthur: Human
+    characters_items:
+      - key: Douglas
+        value: Human
+      - key: Marvin
+        value: Robot
+      - key: Arthur
+        value: Human
+  tasks:
+    - name: print characters_dict and characters_items
+      debug:
+        msg: "{{ filter_item }}"
+      loop: "{{ [ characters_dict, characters_items ] }}"
+      loop_control:
+        loop_var: filter_item
+
+    - name: dict2items and items2dict filters
+      assert:
+        that:
+          - "{{ characters_dict | dict2items }} is eq( characters_items )"
+          - "{{ characters_items | items2dict }} is eq( characters_dict )"

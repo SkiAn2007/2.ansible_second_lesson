@@ -1,0 +1,14 @@
+---
+- name: print list
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    prime: [2, 3, 5, 7, 11]
+  tasks:
+    - name: Show five first prime numbers
+      debug:
+        msg: "{{ prime_number }}"
+      loop: "{{ prime }}"
+      loop_control:
+        loop_var: prime_number

@@ -1,0 +1,13 @@
+---
+- name: loops with conditionals
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: return items > 5
+      debug:
+        msg: "{{ even_number }}"
+      loop: [ 0, 2, 4, 6, 8, 10 ]
+      loop_control:
+        loop_var: even_number
+      when: even_number > 5

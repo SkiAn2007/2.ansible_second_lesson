@@ -1,0 +1,35 @@
+---
+- name: other filters
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    my_string: some string with spaces
+  tasks:
+    - name: SHA-1 hash
+      debug:
+        msg: "{{ hash_items }}"
+      loop:
+        - "'password' in SHA1 - {{ 'password' | hash('sha1') }}"
+        - "'password' in SHA512 - {{ 'password' | password_hash('sha512') }}"
+      loop_control:
+        loop_var: hash_items
+
+    - name: base64 filters
+      debug:
+        msg: "{{ base64_items }}"
+      loop:
+        - "âÉïôú encoded - '{{ 'âÉïôú' | b64encode }}'"
+        - "w6LDicOvw7TDug decoded - '{{ 'w6LDicOvw7TDug==' | b64decode }}'"
+      loop_control:
+        loop_var: base64_items
+
+    - name: quote filter
+      shell: "echo {{ my_string | quote }}"
+
+    - name: Change case of characters
+      assert:
+        that:
+          - "'{{ 'Test' | lower }}' is eq( 'test' )"
+          - "'{{ 'Test' | upper }}' is eq( 'TEST' )"
+          - "'{{ 'test' | capitalize }}' is eq( 'Test' )"

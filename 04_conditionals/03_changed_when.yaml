@@ -1,0 +1,13 @@
+---
+- name: changed_when example
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: true
+  tasks:
+    - name: changed_when test
+      shell: echo "Sample text"
+
+    - name: changed_when test
+      shell: echo "Sample text"
+      changed_when: false

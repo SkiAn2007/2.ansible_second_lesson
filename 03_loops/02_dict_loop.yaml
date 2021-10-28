@@ -1,0 +1,17 @@
+---
+- name: Print Dictionary
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    employee:
+      name: "Elliot Alderson"
+      title: "Cybersecurity engineer"
+      company: "Allsafe Cybersecurity"
+  tasks:
+    - name: Print employee dictionary
+      debug:
+        msg: "{{ employee_info }}"
+      loop: "{{ employee | dict2items }}"
+      loop_control:
+        loop_var: employee_info

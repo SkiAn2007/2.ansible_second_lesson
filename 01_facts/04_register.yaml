@@ -1,0 +1,15 @@
+---
+- name: show return value of whoami command
+  hosts: nodes
+  tasks:
+    - name: register output of whoami command
+      command: whoami
+      register: login
+
+    - name: debug
+      debug:
+        msg: "{{ login }}"
+
+    - name: debug
+      debug:
+        msg: "Current session user is {{ login.stdout }}"

@@ -1,0 +1,12 @@
+---
+- name: get facts playbook
+  hosts: nodes
+  gather_facts: true
+  tasks:
+  - name: output all facts
+    debug:
+      msg: "{{ ansible_facts }}"
+
+  - name: print OS distribution fact
+    debug:
+      msg: "{{ ansible_facts.distribution }}"

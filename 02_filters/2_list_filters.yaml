@@ -1,0 +1,30 @@
+---
+- name: list filters
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: max, min and sum filters
+      assert:
+        that:
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | max }} is eq( 12 )"
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | min }} is eq( 2 )"
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | sum }} is eq( 42 )"
+
+    - name: length, first and last filters
+      assert:
+        that:
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | length }} is eq( 6 )"
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | first }} is eq( 2 )"
+          - "{{ [ 2, 4, 6, 8, 10, 12 ] | last }} is eq( 12 )"
+
+    - name: reverse and sort filters
+      assert:
+        that:
+          - "{{ [ 2, 4, 6, 8, 10 ] | reverse | list }} is eq( [ 10, 8, 6, 4, 2] )"
+          - "{{ [ 4, 8, 10, 6, 2 ] | sort | list }} is eq( [ 2, 4, 6, 8, 10 ] )"
+
+    - name: flatten filter
+      assert:
+        that:
+          - "{{ [ 2, [4, [6, 8]], 10 ] | flatten }} is eq( [ 2, 4, 6, 8, 10] )"

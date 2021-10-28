@@ -1,0 +1,10 @@
+---
+- name: pass the message to command line
+  hosts: nodes
+  gather_facts: true
+  vars:
+    greeting_msg: "greeting message is not specified"
+  tasks:
+  - name: message output
+    debug:
+      msg: "{{ greeting_msg }}"
