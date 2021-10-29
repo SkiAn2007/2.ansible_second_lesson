@@ -6,7 +6,7 @@
   vars_files:
     - 01b_secret_encrypted.yaml
   tasks:
-    - name: get facts task
+    - name: print encrypted var
       debug:
         msg: "{{ password }}"
       no_log: true

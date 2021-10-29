@@ -6,23 +6,22 @@
   vars:
     my_string: some string with spaces
   tasks:
-    - name: SHA-1 hash
+    - name: SHA1 hash
       debug:
-        msg: "{{ hash_items }}"
-      loop:
-        - "'password' in SHA1 - {{ 'password' | hash('sha1') }}"
-        - "'password' in SHA512 - {{ 'password' | password_hash('sha512') }}"
-      loop_control:
-        loop_var: hash_items
+        msg: "'password' in SHA1 - {{ 'password' | hash('sha1') }}"
 
-    - name: base64 filters
+    - name: SHA512 hash
       debug:
-        msg: "{{ base64_items }}"
-      loop:
-        - "âÉïôú encoded - '{{ 'âÉïôú' | b64encode }}'"
-        - "w6LDicOvw7TDug decoded - '{{ 'w6LDicOvw7TDug==' | b64decode }}'"
-      loop_control:
-        loop_var: base64_items
+        msg: "'password' in SHA512 - {{ 'password' | password_hash('sha512') }}"
+
+
+    - name: base64encode filters
+      debug:
+        msg: "âÉïôú encoded - '{{ 'âÉïôú' | b64encode }}'"
+    
+    - name: base64decode filter
+      debug:
+        msg: "w6LDicOvw7TDug decoded - '{{ 'w6LDicOvw7TDug==' | b64decode }}'"
 
     - name: quote filter
       shell: "echo {{ my_string | quote }}"

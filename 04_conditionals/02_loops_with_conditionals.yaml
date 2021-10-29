@@ -1,7 +1,6 @@
 ---
 - name: loops with conditionals
-  hosts: localhost
-  connection: local
+  hosts: nodes
   gather_facts: false
   tasks:
     - name: return items > 5

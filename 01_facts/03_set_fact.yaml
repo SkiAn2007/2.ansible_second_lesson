@@ -1,7 +1,6 @@
 ---
 - name: set facts playbook
-  hosts: localhost
-  connection: local
+  hosts: nodes
   gather_facts: false
   tasks:
   - name: set facts task

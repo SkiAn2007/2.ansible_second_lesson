@@ -1,7 +1,6 @@
 ---
 - name: changed_when example
-  hosts: localhost
-  connection: local
+  hosts: nodes
   gather_facts: false
   become: true
   tasks:

@@ -1,7 +1,6 @@
 ---
 - name: test
-  hosts: localhost
-  connection: local
+  hosts: nodes
   gather_facts: true
   tasks:
     - name: show ansible version success
