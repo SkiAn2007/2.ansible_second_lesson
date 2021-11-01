@@ -10,12 +10,18 @@
   tasks:
     - name: mandatory filter
       debug:
-        msg: "{{ my_value | mandatory }}"
+        msg: >-
+          'my_value | mandatory' result is
+          {{ my_value | mandatory }}
 
     - name: default filter
       debug:
-        msg: "{{ my_value2 | default(my_default) }}"
+        msg: >-
+          'my_value2 | default(my_default)' result is
+          {{ my_value2 | default(my_default) }}
 
     - name: default filter with null override
       debug:
-        msg: "{{ my_value2 | default(my_default, True) }}"
+        msg: >-
+          'my_value2 | default(my_default, True)' result is
+          {{ my_value2 | default(my_default, True) }}

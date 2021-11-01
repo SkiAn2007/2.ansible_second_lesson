@@ -8,26 +8,33 @@
   tasks:
     - name: SHA1 hash
       debug:
-        msg: "'password' in SHA1 - {{ 'password' | hash('sha1') }}"
+        msg: "'password' in SHA1 -
+          {{ 'password' | hash('sha1') }}"
 
     - name: SHA512 hash
       debug:
-        msg: "'password' in SHA512 - {{ 'password' | password_hash('sha512') }}"
+        msg: "'password' in SHA512 - 
+          {{ 'password' | password_hash('sha512') }}"
 
     - name: base64encode filters
       debug:
-        msg: "âÉïôú encoded - '{{ 'âÉïôú' | b64encode }}'"
+        msg: "âÉïôú encoded - 
+          '{{ 'âÉïôú' | b64encode }}'"
     
     - name: base64decode filter
       debug:
-        msg: "w6LDicOvw7TDug decoded - '{{ 'w6LDicOvw7TDug==' | b64decode }}'"
+        msg: "w6LDicOvw7TDug== decoded - 
+          '{{ 'w6LDicOvw7TDug==' | b64decode }}'"
 
     - name: quote filter
-      shell: "echo {{ my_string | quote }}"
+      debug:
+        msg: 
+          - "{{ my_string }}"
+          - "{{ my_string | quote }}"
 
     - name: Change case of characters
-      assert:
-        that:
-          - "'{{ 'Test' | lower }}' is eq( 'test' )"
-          - "'{{ 'Test' | upper }}' is eq( 'TEST' )"
-          - "'{{ 'test' | capitalize }}' is eq( 'Test' )"
+      debug:
+        msg:
+          - "'Test | lower' result is {{ 'Test' | lower }}"
+          - "'Test | upper' result is {{ 'Test' | upper }}"
+          - "'test | capitalize' result is {{ 'test' | capitalize }}'"
