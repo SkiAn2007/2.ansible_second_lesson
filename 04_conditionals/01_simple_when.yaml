@@ -3,18 +3,18 @@
   hosts: nodes
   gather_facts: true
   tasks:
-    - name: show ansible version success
+    - name: 1. show ansible version success
       debug:
         msg: "ansible version is {{ ansible_version }}"
       when: ansible_version.full == '2.9.14'
 
-    - name: show ansible version skipped
+    - name: 2. show ansible version skipped
       debug:
         msg: "ansible version is {{ ansible_version }}"
       when: ansible_version.full == '2.9.15'
 
     # комбинированные выражения
-    - name: show ansible version mixed condition
+    - name: 3. show ansible version mixed condition
       debug:
         msg: >-
           os distribution is {{ ansible_facts.distribution }}
