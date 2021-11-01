@@ -1,0 +1,30 @@
+---
+- name: get facts playbook
+  hosts: nodes
+  gather_facts: true
+  tasks:
+  - name: ensure that facts.d directory exists
+    file:
+      path: /etc/ansible/facts.d
+      state: directory
+      owner: ansible
+      group: ansible
+      mode: 0755
+    become: true
+
+  - name: ensure that local facts exist
+    copy:
+      src: ./02b_local_facts.yaml
+      dest: /etc/ansible/facts.d/ansible_course.fact
+      owner: ansible
+      group: ansible
+      mode: 0644
+    become: true
+
+  - name: print ansible local
+    debug:
+      msg: "{{ ansible_local }}"
+
+  - name: print var2
+    debug:
+      msg: "{{ ansible_local.ansible_course.grouped_facts1.var2 }}"
