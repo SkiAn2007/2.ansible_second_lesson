@@ -1,7 +1,6 @@
 ---
 - name: get facts playbook
-  hosts: localhost
-  connection: local
+  hosts: nodes
   gather_facts: false
   vars_files:
     - 01b_secret_encrypted.yaml
@@ -9,4 +8,4 @@
     - name: print encrypted var
       debug:
         msg: "{{ password }}"
-      no_log: true
+      # no_log: true

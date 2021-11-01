@@ -16,12 +16,13 @@
       - key: Arthur
         value: Human
   tasks:
-    - name: print characters_dict and characters_items
+    - name: print characters_dict
       debug:
-        msg: "{{ filter_item }}"
-      loop: "{{ [ characters_dict, characters_items ] }}"
-      loop_control:
-        loop_var: filter_item
+        msg: "{{ characters_dict }}"
+
+    - name: characters_items
+      debug:
+        msg: "{{ characters_items }}"
 
     - name: dict2items and items2dict filters
       assert:

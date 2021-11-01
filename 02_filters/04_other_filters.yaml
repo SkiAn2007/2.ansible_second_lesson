@@ -14,7 +14,6 @@
       debug:
         msg: "'password' in SHA512 - {{ 'password' | password_hash('sha512') }}"
 
-
     - name: base64encode filters
       debug:
         msg: "âÉïôú encoded - '{{ 'âÉïôú' | b64encode }}'"
