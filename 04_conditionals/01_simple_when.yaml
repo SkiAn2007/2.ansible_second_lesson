@@ -21,4 +21,4 @@
           {{ ansible_facts['distribution_major_version'] }}
       when:
         - ansible_facts.distribution | lower == 'centos'
-        - ansible_facts['distribution_major_version'] == "7"
+        - ansible_facts['distribution_major_version'] | int == 7
