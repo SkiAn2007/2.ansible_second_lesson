@@ -6,7 +6,7 @@
   tasks:
     - name: Install 'mariadb-server' and 'MySQL-python' packages
 
-    - name: insert firewalld rule for "{{ mysql_port }}"/tcp port
+    - name: Insert firewalld rule for "{{ mysql_port }}"/tcp port
 
     - name: Ensure 'mariadb' service is started and enabled
 
