@@ -25,6 +25,7 @@
     debug:
       msg: "{{ ansible_local }}"
 
+  # закончится с ошибкой, если по новой не получить факты
   - name: print var2
     debug:
       msg: "{{ ansible_local.ansible_course.grouped_facts1.var2 }}"
