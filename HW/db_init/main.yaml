@@ -13,5 +13,5 @@
 
     - name: >
         Create database user "{{ db_user }}" with "{{ db_pass }}"
-        and "{{ wp_db_name }}".*:ALL privelege
+        and "{{ db_name }}".*:ALL privelege
       mysql_user:
