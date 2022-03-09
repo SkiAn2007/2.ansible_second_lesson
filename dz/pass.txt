@@ -1,0 +1,5 @@
+vault pass:
+12345678
+
+how to run:
+ansible-playbook playbook.yaml --ask-vault-pass

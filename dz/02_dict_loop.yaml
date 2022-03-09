@@ -1,0 +1,19 @@
+---
+- name: hometask21
+  hosts: nodes
+  become: true
+  vars_files:
+    - users.yaml
+  vars:
+    user_comment: Ansible-generated user
+  tasks:
+    - name: Create user on remote host
+      user:
+        name: "{{ user_info.username }}"
+        password: "{{ user_info.password | password_hash('sha512') }}"
+        comment: "{{ user_comment }}"
+      loop: "{{ users_list }}"
+      loop_control:
+        loop_var: user_info
+        pause: 5
+      no_log: true
